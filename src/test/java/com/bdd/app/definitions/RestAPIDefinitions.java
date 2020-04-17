@@ -22,7 +22,7 @@ public class RestAPIDefinitions {
 
 	@When("perform get operation for '(.*)'")
 	public void whenGetOperation(String serviceUri) {
-		restSteps.performGetOperarition(serviceUri);
+		restSteps.performGetOperation(serviceUri);
 	}
 
 	@Then("verify response code '(.*)'")
@@ -33,5 +33,15 @@ public class RestAPIDefinitions {
 	@Then("verify response body contains:")
 	public void verify_response_vody_contains(DataTable dataTable) {
 		restSteps.verifyResponseBody(dataTable);
+	}
+	
+	@When("perform get operation for '(.*)' along with query paramters:")
+	public void whenGetOperation(String serviceUri,DataTable dataTable) {
+		restSteps.performGetOperation(serviceUri,dataTable);
+	}
+	
+	@When("perform post operation for '(.*)' with payload as '(.*)'")
+	public void whenPostOperation(String serviceUri,String path) {
+		restSteps.performPostOperation(serviceUri,path);
 	}
 }

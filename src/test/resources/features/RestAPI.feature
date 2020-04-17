@@ -21,13 +21,39 @@ Feature: Title of your feature
   I want to use this template for my feature file
 
   @tag1
-  Scenario Outline: Title of your scenario outline
+  Scenario Outline: Test Scenario for GET https://jsonplaceholder.typicode.com/todos/1
     Given set base uri of application '<baseURI>'
     When perform get operation for '<serviceURI>'
     Then verify response code '<code>'
     Then verify response body contains:
-      | userId |     1 |
+      | userId | 1 |
 
     Examples: 
       | baseURI                               | serviceURI | code |
       | https://jsonplaceholder.typicode.com/ | /todos/1   |  200 |
+
+  @tag2
+  Scenario Outline: Test Scenario for GET https://reqres.in/api/users?page=2
+    Given set base uri of application '<baseURI>'
+    When perform get operation for '<serviceURI>' along with query paramters:
+      | page | 2 |
+    Then verify response code '<code>'
+    Then verify response body contains:
+      | data.email[0] | michael.lawson@reqres.in |
+
+    Examples: 
+      | baseURI            | serviceURI | code |
+      | https://reqres.in/ | /api/users |  200 |
+      
+      @tag3
+  Scenario Outline: Test Scenario for POST https://reqres.in/api/login
+    Given set base uri of application '<baseURI>'
+    When perform post operation for '<serviceURI>' with payload as '<requestPayLoad>'
+    Then verify response code '<code>'
+    Then verify response body contains:
+      | token | QpwL5tke4Pnpja7X4 |
+
+    Examples: 
+      | baseURI            | serviceURI | code |requestPayLoad|
+      | https://reqres.in/ | /api/login |  200 |login.json|
+      

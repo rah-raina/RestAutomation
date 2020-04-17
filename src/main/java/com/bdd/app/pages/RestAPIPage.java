@@ -48,6 +48,8 @@ public class RestAPIPage extends BasePage {
 	}
 
 	public int getResponseCode() {
+		String body = response.getBody().asString();
+		LOGGER.info("Response body is '{}'",body);
 		int code = response.getStatusCode();
 		LOGGER.info("Response code is '{}'",code);
 		return code;
