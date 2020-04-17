@@ -30,7 +30,7 @@ public class RestAPIDefinitions {
 		restSteps.verifyResponseCode(code);
 	}
 	
-	@Then("verify response vody contains:")
+	@Then("verify response body contains:")
 	public void verify_response_vody_contains(DataTable dataTable) {
 		restSteps.verifyResponseBody(dataTable);
 	}

@@ -1,8 +1,11 @@
 package com.bdd.app.definitions.steps;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.bdd.app.pages.RestAPIPage;
@@ -40,6 +43,16 @@ public class RestAPISteps extends ScenarioSteps {
 public void verifyResponseBody(DataTable dataTable) {
 	// TODO Auto-generated method stub
 	Map<String,String> valueToVerify = dataTable.asMap(String.class, String.class);
+	
+	List<String> listJsonPath = new ArrayList<String>(valueToVerify.keySet());
+	
+	Map<String,String> retreiveValues = restAPIPage.parseListOfJsonPathToValues(listJsonPath);
+	
+	for(String path : retreiveValues.keySet()) {
+		assertEquals("Data mismatch", valueToVerify.get(path), retreiveValues.get(path));
+	}
+	
+	
 	
 	
 }

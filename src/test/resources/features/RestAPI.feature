@@ -26,8 +26,7 @@ Feature: Title of your feature
     When perform get operation for '<serviceURI>'
     Then verify response code '<code>'
     Then verify response body contains:
-    |key|value|
-    |name|1|
+      | userId |     1 |
 
     Examples: 
       | baseURI                               | serviceURI | code |

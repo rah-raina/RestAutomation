@@ -1,5 +1,7 @@
 package com.bdd.app.pages;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -66,6 +68,17 @@ public class RestAPIPage extends BasePage {
 
 		response = httpRequest.relaxedHTTPSValidation().when().body(payload).post(serviceURI);
 
+	}
+	
+	public Map<String,String> parseListOfJsonPathToValues(List<String> lsJsonPath) {
+		getResponseBody();
+		Map<String,String> hmJsonPathValue = new HashMap<String,String>();
+		
+		for(String path :lsJsonPath) {
+			hmJsonPathValue.put(path, response.jsonPath().getString(path));
+		}
+		
+		return hmJsonPathValue;
 	}
 	
 
